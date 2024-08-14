@@ -32,7 +32,10 @@ const totalFeedback = count.good + count.neutral + count.bad;
 
 const updateFeedback = (feedbackType) => {
     setCount({ ...count, [feedbackType]: count[feedbackType] + 1 });
-  };
+};
+  
+  
+  const positiveFeedback = Math.round((count.good / totalFeedback) * 100);
 
   return (
     <>
@@ -42,7 +45,7 @@ const updateFeedback = (feedbackType) => {
         <Feedback
           value={count}
           totalFeedback={totalFeedback}
-          // positiveFeedback={positiveFeedback}
+          positiveFeedback={positiveFeedback}
         />
       )}
       {totalFeedback === 0 && <Notification />}
