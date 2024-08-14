@@ -1,12 +1,11 @@
 
-export default function Feedback({ state }) {
-    // console.log(state);
-  return (
+export default function Feedback({ value }) {
+    
+return (
     <>
-      
-      <p>Good: {state.feedback.good}</p>
-      <p>Neutral: {state.feedback.neutral}</p>
-      <p>Bad: {state.feedback.bad}</p>
+        <p>Good: {value["good"]}</p>
+        <p>Neutral: {value["neutral"]}</p>
+        <p>Bad:{value["bad"]}</p>
     </>
-  );
+); 
 }
