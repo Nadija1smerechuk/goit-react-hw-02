@@ -28,19 +28,29 @@ export default function App() {
     });
   };
 
+
+  useEffect(() => {
+    window.localStorage.setItem ("count", JSON.stringify(count));
+  }, [count]);
+
+
 const totalFeedback = count.good + count.neutral + count.bad;
 
 const updateFeedback = (feedbackType) => {
     setCount({ ...count, [feedbackType]: count[feedbackType] + 1 });
 };
-  
-  
-  const positiveFeedback = Math.round((count.good / totalFeedback) * 100);
 
+  const positiveFeedback = Math.round((count.good / totalFeedback) * 100);
+  
   return (
     <>
       <Description />
-      <Options updateFeedback={updateFeedback} totalFeedback={totalFeedback} resetFeedback={resetFeedback}/>
+
+      <Options
+        updateFeedback={updateFeedback}
+        totalFeedback={totalFeedback}
+        resetFeedback={resetFeedback} />
+      
       {totalFeedback > 0 && (
         <Feedback
           value={count}
@@ -48,6 +58,7 @@ const updateFeedback = (feedbackType) => {
           positiveFeedback={positiveFeedback}
         />
       )}
+
       {totalFeedback === 0 && <Notification />}
     </>
   )
